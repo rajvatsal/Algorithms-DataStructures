@@ -1,7 +1,6 @@
 bin/
 .vs/
 
-README.md
 Makefile
 *.vcxproj
 *.vcxproj.user
