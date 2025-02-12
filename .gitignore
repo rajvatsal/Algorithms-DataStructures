@@ -1,0 +1,10 @@
+bin/
+.vs/
+
+README.md
+Makefile
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+*.log
