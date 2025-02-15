@@ -6,13 +6,16 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 ## ALGORITHMS IMPLEMENTED
 
-Nothing right now
+- Quicksort(middle)
 
 ## ALGORITHMS TO BE IMPLEMENTED
 
-- Quicksort
-- Bubblesort
 - Mergesort
+- Radix sort
+- Insertion sort
+- Bubblesort
+- Quicksort (mean of median, randomized)
+- Perfect sort -> an algorihtm that uses above algorithms to get the best result based on the dataset size
 - Binary Search
 - Linked List (circular and linear)
 - Tree
