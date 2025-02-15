@@ -1,3 +1,3 @@
 #pragma once
 
-int quicksort(void);
+void quicksort(int *, int);

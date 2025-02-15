@@ -1,6 +1,9 @@
 #include <stdio.h>
 
-int quicksort() {
-  printf("inside quick sort");
-  return 0;
+void quicksort(int *arr, int len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        printf("ITEM %d: %d\n", i + 1, arr[i]);
+    }
 }
