@@ -7,6 +7,7 @@ In this repository I try to implement common CS algorithms/data structures in C 
 ## ALGORITHMS IMPLEMENTED
 
 - Quicksort(middle)
+- Bisection Method
 
 ## ALGORITHMS TO BE IMPLEMENTED
 
@@ -38,4 +39,4 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 **Nsa**
 
-- Bisection Method
+- Some other methods
