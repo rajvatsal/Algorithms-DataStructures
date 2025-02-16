@@ -1,23 +1,15 @@
-#include "fillRandomInt.h"
 #include "nsa/bisection.h"
-#include "printArray.h"
-#include "quicksort.h"
+#include <math.h>
 #include <stdio.h>
+
+float f(float x)
+{
+    // equation is x3 + x - 5 = 0
+    return pow(x, 3) - x - 5;
+}
 
 int main()
 {
-    int myArray[50];
-    int len = sizeof(myArray) / sizeof(myArray[0]);
-
-    fillRandomInt(myArray, len, 100);
-
-    printf("\nUNSORTED ARRAY\n");
-    printArray(myArray, len);
-
-    quicksort(myArray, len);
-
-    printf("\nSORTED ARRAY\n");
-    printArray(myArray, len);
-
-    return 0;
+    float root = bisectRoot(f);
+    printf("ROOT: %f", root);
 }

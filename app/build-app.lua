@@ -14,7 +14,7 @@ project 'App'
     "../core/source/"
   }
 
-  links { "Core" }
+  links { "Core", "m" }
 
   filter "configurations:Debug"
     defines "DEBUG"

@@ -5,10 +5,6 @@ project "Core"
   objdir("..bin/intermediates/" .. outputdir .. "/Core")
   staticruntime "off"
 
-	defines     { "LUA_USE_POSIX", "LUA_USE_DLOPEN" }
-  links { "m:static" }
-	linkoptions { "-rdynamic" }
-
   files {
     "source/**.c",
     "source/**.h"
