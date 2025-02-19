@@ -6,8 +6,14 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 ## ALGORITHMS IMPLEMENTED
 
+**Sorting**
+
 - Quicksort(middle)
+
+**Roots**
+
 - Bisection Method
+- Regula Falsi Method
 
 ## ALGORITHMS TO BE IMPLEMENTED
 
