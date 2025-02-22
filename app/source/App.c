@@ -1,16 +1,9 @@
-#include "roots/iterative.h"
-#include <math.h>
-#include <stdio.h>
-
-float f(float x)
-{
-    // equation is x3 + x - 5 = 0
-    return pow(x, 3) - x - 1;
-}
+#include "mergesort.h"
+#include "quicksort.h"
 
 int main()
 {
-    rootMethod_t method = regula_falsi;
-    float root = getRoot(f, method, 4);
-    printf("ROOT: %f", root);
+    int arr[10] = {5, 2, 3, 1, 4, 10, 20, 51, 15, 20};
+    quicksort(arr, 10);
+    return 0;
 }

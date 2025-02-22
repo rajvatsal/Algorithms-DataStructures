@@ -1,3 +1,3 @@
 #pragma once
 
-void printArray(int *, int);
+void printArray(int *array, int len);
