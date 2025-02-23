@@ -25,29 +25,34 @@ void conquer(int *arr, int i, int j, int end)
 
         if (i == leftEnd)
         {
-            while (j < end)
+            i = start;
+            while (i - start < k)
             {
-                tmp[k] = arr[j];
-                j++;
-                k++;
+                arr[i] = tmp[i - start];
+                i++;
             }
             break;
         }
         else if (j == end)
         {
-            while (i < leftEnd)
+            int correctValueIndex = k;
+            while (k + start < end)
             {
-                tmp[k] = arr[i];
+                arr[k + start] = arr[i];
+                i++;
+                k++;
+            }
+
+            i = start;
+            k = 0;
+            while (k < correctValueIndex)
+            {
+                arr[i] = tmp[k];
                 i++;
                 k++;
             }
             break;
         }
-    }
-
-    for (int l = 0; l < sizeof tmp / sizeof tmp[0]; l++)
-    {
-        arr[l + start] = tmp[l];
     }
 }
 
