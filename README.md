@@ -9,6 +9,7 @@ In this repository I try to implement common CS algorithms/data structures in C 
 **Sorting**
 
 - Quicksort(middle)
+- Mergesort
 
 **Roots**
 
@@ -19,7 +20,6 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
  **Sorting**
 
-- Mergesort
 - Radix sort
 - Insertion sort
 - Bubblesort
