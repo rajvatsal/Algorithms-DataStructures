@@ -10,6 +10,7 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 - Quicksort(middle)
 - Mergesort
+- Insertion sort
 
 **Roots**
 
@@ -21,7 +22,6 @@ In this repository I try to implement common CS algorithms/data structures in C 
  **Sorting**
 
 - Radix sort
-- Insertion sort
 - Bubblesort
 - Quicksort (mean of median, randomized)
 - Perfect sort -> an algorihtm that uses above algorithms to get the best result based on the dataset size
