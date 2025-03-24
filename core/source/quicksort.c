@@ -1,23 +1,51 @@
-#include <stdio.h>
+#include "quicksort.h"
+#include <stdlib.h>
+#include <time.h>
 
-// int ceil(double num)
-// {
-//     int int_part = (int)num;
-//     return (num > int_part) ? (int_part + 1) : int_part;
-// }
-//
-void sort(int *arr, int startIndex, int endIndex)
+int getRandomPivot(int iFirst, int iLast)
 {
-    int len = (endIndex - startIndex) + 1;
+    return (rand() % (iLast - iFirst)) + iFirst;
+}
 
-    if (len < 2 || startIndex > endIndex)
+int getMedianOfThreePivot(int *arr, int iFirst, int iLast)
+{
+    int iMiddle = (iFirst + iLast) / 2;
+    int vFirst = arr[iFirst], vMiddle = arr[iMiddle], vLast = arr[iLast];
+
+    if ((vFirst <= vMiddle && vMiddle <= vLast) || (vLast <= vMiddle && vMiddle <= vFirst))
+        return iMiddle;
+    if ((vMiddle <= vFirst && vFirst <= vLast) || (vLast <= vFirst && vFirst <= vMiddle))
+        return iFirst;
+    return iLast;
+}
+
+void sort(int *arr, const int index, const int lastIndex, partitionType_t type)
+{
+    const int len = (lastIndex - index) + 1;
+
+    if (len < 2 || index > lastIndex)
     {
+        // if there is only one element or we're out of the array we want to sort then
         return;
     }
 
-    int i = startIndex;
-    int j = endIndex;
-    int pivot = ((len + 1) / 2 - 1) + i;
+    int i = index;
+    int j = lastIndex;
+    int pivot;
+
+    switch (type)
+    {
+    case MEDIAN_OF_THREE:
+        pivot = getMedianOfThreePivot(arr, i, j);
+        break;
+
+    case RANDOM:
+        pivot = (rand() % (j - i)) + i;
+        break;
+    default:
+        pivot = (((len + 1) / 2) - 1) + i;
+        break;
+    };
 
     while (i < j)
     {
@@ -56,11 +84,15 @@ void sort(int *arr, int startIndex, int endIndex)
         }
     }
 
-    sort(arr, startIndex, pivot - 1);
-    sort(arr, pivot + 1, endIndex);
+    sort(arr, index, pivot - 1, type);
+    sort(arr, pivot + 1, lastIndex, type);
 }
 
-void quicksort(int *arr, int len)
+void quicksort(int *arr, int len, partitionType_t type)
 {
-    sort(arr, 0, len - 1);
+    if (type == RANDOM)
+    {
+        srand(time(NULL));
+    }
+    sort(arr, 0, len - 1, type);
 }
