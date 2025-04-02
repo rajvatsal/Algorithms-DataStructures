@@ -45,4 +45,5 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 **Nsa**
 
+- Newton raphson
 - Some other methods
