@@ -5,19 +5,20 @@
 ### Windows
 
 ```code
+git clone https://github.com/rajvatsal/Algorithms-DataStructures.git && cd Algorithms-Datastructure &&
 start /wait vendor\bins\windows\premake5.exe vs2022 && start Algorithms.sln
 ```
 
 ### Linux
 
 ```code
-./vendor/bins/linux/premake5 gmake2 && make
+git clone https://github.com/rajvatsal/Algorithms-DataStructures.git && cd Algorithms-Datastructure && ./vendor/bins/linux/premake5 gmake2 && make
 ```
 
 ### MacOS
 
 ```code
-./vendor/bins/macos/premake5 gmake2 && make
+git clone https://github.com/rajvatsal/Algorithms-DataStructures.git && cd Algorithms-Datastructure && ./vendor/bins/macos/premake5 gmake2 && make
 ```
 
 In this repository I try to implement common CS algorithms/data structures in C to get better
