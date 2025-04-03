@@ -1,10 +1,28 @@
 # Algorithms & Data Structures
 
-To build simply run `make` on the root directory
+## Build
+
+### Windows
+
+```code
+start /wait vendor\bins\windows\premake5.exe vs2022 && start Algorithms.sln
+```
+
+### Linux
+
+```code
+./vendor/bins/linux/premake5 gmake2 && make
+```
+
+### MacOS
+
+```code
+./vendor/bins/macos/premake5 gmake2 && make
+```
 
 In this repository I try to implement common CS algorithms/data structures in C to get better
 
-## ALGORITHMS IMPLEMENTED
+## Algorithms implemented
 
 **Sorting**
 
@@ -18,7 +36,7 @@ In this repository I try to implement common CS algorithms/data structures in C 
 - Bisection Method
 - Regula Falsi Method
 
-## ALGORITHMS TO BE IMPLEMENTED
+## Algorithms to be implemented
 
  **Sorting**
 
