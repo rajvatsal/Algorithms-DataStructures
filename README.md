@@ -5,8 +5,7 @@
 ### Windows
 
 ```code
-git clone https://github.com/rajvatsal/Algorithms-DataStructures.git && cd Algorithms-Datastructure &&
-start /wait vendor\bins\windows\premake5.exe vs2022 && start Algorithms.sln
+git clone https://github.com/rajvatsal/Algorithms-DataStructures.git && cd Algorithms-Datastructure && start /wait vendor\bins\windows\premake5.exe vs2022 && start Algorithms.sln
 ```
 
 ### Linux
