@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "msort.h"
 
-void mergesort(int *arr, int start, int end)
+void msort(int *arr, int start, int end)
 {
     int i = start;
     int j = ((end - start) / 2) + i;
@@ -11,11 +11,11 @@ void mergesort(int *arr, int start, int end)
     // sort left and right halves individaully (DIVIDE PROBLEM)
     if (i != j)
     {
-        mergesort(arr, i, j);
+        msort(arr, i, j);
     }
     if (x != y)
     {
-        mergesort(arr, x, y);
+        msort(arr, x, y);
     }
 
     // merge two sorted halves together (COMBINE TO GET FINAL ANSwER)
@@ -56,25 +56,5 @@ void mergesort(int *arr, int start, int end)
     for (int i = 0; i < count; ++i)
     {
         arr[start + i] = tmpArry[i];
-    }
-}
-
-int main()
-{
-    int arr[10] = {11, 10, 5, 40, 50, 42, 1, 47, 21, 28};
-
-    printf("BEFORE:\n");
-    for (int i = 0; i < 10; i++)
-    {
-        printf("%d | ", arr[i]);
-    }
-
-    // sort
-    mergesort(arr, 0, 9);
-
-    printf("\nAFTER:\n");
-    for (int i = 0; i < 10; i++)
-    {
-        printf("%d | ", arr[i]);
     }
 }

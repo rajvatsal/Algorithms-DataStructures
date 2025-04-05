@@ -1,8 +1,19 @@
 #include "fillRandomInt.h"
-#include "mergesort.h"
+#include "msort.h"
 #include "quicksort.h"
 #include <stdio.h>
 #include <time.h>
+
+int isArrSorted(int *arr, int len)
+{
+    for (int i = 0; i < len - 1; i++)
+    {
+        if (arr[i] > arr[i + 1])
+            return 0;
+    }
+
+    return 1;
+}
 
 int main()
 {
@@ -77,7 +88,7 @@ int main()
             arr[i] = backupArr[i];
         }
         clock_t begin = clock();
-        mergesort(arr, sizeof arr / sizeof arr[0]);
+        msort(arr, 0, (sizeof arr / sizeof arr[0]) - 1);
         clock_t end = clock();
         double timeTaken = (double)(end - begin) / CLOCKS_PER_SEC;
         timeRecord[4] += timeTaken;
