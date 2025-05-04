@@ -97,7 +97,7 @@ float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, 
     return y;
 }
 
-float getRootBySecant(double (*f)(double x), unsigned short int accuracyFactor)
+double getRootBySecant(double (*f)(double x), unsigned short int accuracyFactor)
 {
     double x0 = 0.f;
     double x1 = 0.f;
