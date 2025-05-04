@@ -26,7 +26,7 @@ int isZero(double num, int decimal)
     return fabs(num) < pow(10, -(++decimal)); // is the difference between number and 0 very less
 }
 
-int checkIfEqual(float x, float y, int decimal)
+int checkIfEqual(double x, double y, int decimal)
 {
     return fabs(x - y) < pow(10, -(++decimal)); // are there values very close
 }
@@ -79,10 +79,9 @@ double getRootByRegulaFalsi(double (*f)(double), int decimal)
     return c;
 }
 
-float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, float (*f)(float x, float y), int accuracyFactor)
+double approxResultByEuler(double x, double y, double lastValueOfX, double stepSize, double (*f)(double x, double y), unsigned short int accuracyFactor)
 {
     int count = 0;
-    accuracyFactor = accuracyFactor < 1 ? 1 : accuracyFactor;
 
     while (!checkIfEqual(x, lastValueOfX, accuracyFactor))
     {
@@ -90,8 +89,8 @@ float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, 
         {
             return 0.f;
         }
-        float result = y + (stepSize * f(x, y)); // Euler's formula
-        printf("y: %.2f | x: %.2f | y1: %.2f | iteration: %d\n", y, x, result, count + 1);
+        double result = y + (stepSize * f(x, y)); // Euler's formula
+        printf("y: %.2lf | x: %.2lf | y1: %.2lf | iteration: %d\n", y, x, result, count + 1);
         x += stepSize;
         y = result;
         count++;
