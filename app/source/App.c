@@ -1,12 +1,13 @@
 #include "nsa.h"
+#include <math.h>
 #include <stdio.h>
 
-float f(float x, float y)
+double f(double x)
 {
-    return (y - x) / (y + x);
+    return pow(x, 3) - x - 1;
 }
 
 int main()
 {
-    printf("\nresult: %f", approxResultByEuler(0.f, 1.f, 0.1f, 0.02f, f, 1));
+    printf("\nresult: %.12f", getRootBySecant(f, 12));
 }

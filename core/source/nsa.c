@@ -2,26 +2,26 @@
 #include <math.h>
 #include <stdio.h>
 
-void initCoordinates(float *pts, float (*f)(float))
+void initCoordinates(double *x0, double *x1, double (*f)(double x))
 {
     int i = 0;
-    pts[0] = pts[1] = i;
+    *x0 = *x1 = 0.f;
 
     do
     {
         if (f(i) < 0)
         {
-            pts[0] = i;
+            *x0 = i;
         }
         else
         {
-            pts[1] = i;
+            *x1 = i;
         }
         i++;
-    } while (f(pts[0]) * f(pts[1]) >= 0);
+    } while (f(*x0) * f(*x1) >= 0);
 }
 
-int isZero(float num, int decimal)
+int isZero(double num, int decimal)
 {
     return fabs(num) < pow(10, -(++decimal)); // is the difference between number and 0 very less
 }
@@ -95,4 +95,23 @@ float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, 
     }
 
     return y;
+}
+
+float getRootBySecant(double (*f)(double x), unsigned short int accuracyFactor)
+{
+    double x0 = 0.f;
+    double x1 = 0.f;
+    double x2 = 0.f;
+    accuracyFactor = accuracyFactor > 15 ? 15 : accuracyFactor;
+
+    initCoordinates(&x0, &x1, f);
+
+    do
+    {
+        x2 = x0 - (f(x0) * ((x1 - x0) / (f(x1) - f(x0))));
+        x0 = x1;
+        x1 = x2;
+    } while (!isZero(f(x2), accuracyFactor));
+
+    return x2;
 }
