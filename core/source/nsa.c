@@ -27,7 +27,7 @@ int isZero(float num, int decimal)
     return fabs(num) < 1.f / quotient;
 }
 
-float bisection(float a, float b, float (*f)(float), int decimal)
+float getRootByBisection(float a, float b, float (*f)(float), int decimal)
 {
     float c = (a + b) / 2;
     float fc = f(c);
@@ -41,15 +41,15 @@ float bisection(float a, float b, float (*f)(float), int decimal)
     }
     else if (fc < 0)
     {
-        return bisection(c, b, f, decimal);
+        return getRootByBisection(c, b, f, decimal);
     }
     else
     {
-        return bisection(a, c, f, decimal);
+        return getRootByBisection(a, c, f, decimal);
     }
 }
 
-float regulaFalsi(float a, float b, float (*f)(float), int decimal)
+float getRootByRegulaFalsi(float a, float b, float (*f)(float), int decimal)
 {
     // c = a - f(a) . (b - a) / (f(b) - f(a))
 
@@ -63,11 +63,11 @@ float regulaFalsi(float a, float b, float (*f)(float), int decimal)
     }
     else if (fc < 0)
     {
-        return regulaFalsi(c, b, f, decimal);
+        return getRootByRegulaFalsi(c, b, f, decimal);
     }
 
     else
     {
-        return regulaFalsi(a, c, f, decimal);
+        return getRootByRegulaFalsi(a, c, f, decimal);
     }
 }
