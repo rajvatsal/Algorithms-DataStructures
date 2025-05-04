@@ -31,7 +31,7 @@ int checkIfEqual(double x, double y, int decimal)
     return fabs(x - y) < pow(10, -(++decimal)); // are there values very close
 }
 
-double getRootByBisection(double (*f)(double x), int decimal)
+double getRootByBisection(double (*f)(double x), unsigned short int decimal)
 {
     double a = 0.f;
     double b = 0.f;
@@ -55,7 +55,7 @@ double getRootByBisection(double (*f)(double x), int decimal)
     return c;
 }
 
-double getRootByRegulaFalsi(double (*f)(double), int decimal)
+double getRootByRegulaFalsi(double (*f)(double), unsigned short int decimal)
 {
     double a = 0.f;
     double b = 0.f;
