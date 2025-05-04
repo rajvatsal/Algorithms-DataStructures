@@ -23,8 +23,12 @@ void initCoordinates(float *pts, float (*f)(float))
 
 int isZero(float num, int decimal)
 {
-    int quotient = pow(10, decimal + 1);
-    return fabs(num) < 1.f / quotient;
+    return fabs(num) < pow(10, -(++decimal)); // is the difference between number and 0 very less
+}
+
+int checkIfEqual(float x, float y, int decimal)
+{
+    return fabs(x - y) < pow(10, -(++decimal)); // are there values very close
 }
 
 float getRootByBisection(float a, float b, float (*f)(float), int decimal)
@@ -70,4 +74,24 @@ float getRootByRegulaFalsi(float a, float b, float (*f)(float), int decimal)
     {
         return getRootByRegulaFalsi(a, c, f, decimal);
     }
+}
+
+float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, float (*f)(float x, float y), int accuracyFactor)
+{
+    int count = 0;
+
+    while (checkIfEqual(x, lastValueOfX, accuracyFactor))
+    {
+        if (x > lastValueOfX)
+        {
+            return 0.f;
+        }
+        float result = y + (stepSize * f(x, y)); // Euler's formula
+        printf("y: %f | x: %f | euler: %f | iteration: %d\n", y, x, result, count + 1);
+        x += stepSize;
+        y = result;
+        count++;
+    }
+
+    return y;
 }
