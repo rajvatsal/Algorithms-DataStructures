@@ -79,15 +79,16 @@ float getRootByRegulaFalsi(float a, float b, float (*f)(float), int decimal)
 float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, float (*f)(float x, float y), int accuracyFactor)
 {
     int count = 0;
+    accuracyFactor = accuracyFactor < 1 ? 1 : accuracyFactor;
 
-    while (checkIfEqual(x, lastValueOfX, accuracyFactor))
+    while (!checkIfEqual(x, lastValueOfX, accuracyFactor))
     {
         if (x > lastValueOfX)
         {
             return 0.f;
         }
         float result = y + (stepSize * f(x, y)); // Euler's formula
-        printf("y: %f | x: %f | euler: %f | iteration: %d\n", y, x, result, count + 1);
+        printf("y: %.2f | x: %.2f | y1: %.2f | iteration: %d\n", y, x, result, count + 1);
         x += stepSize;
         y = result;
         count++;
