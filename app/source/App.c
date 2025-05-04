@@ -9,5 +9,5 @@ double f(double x)
 
 int main()
 {
-    printf("\nresult: %.12f", getRootBySecant(f, 12));
+    printf("\nresult: %.12f", getRootByBisection(f, 12));
 }

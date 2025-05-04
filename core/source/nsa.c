@@ -31,26 +31,28 @@ int checkIfEqual(float x, float y, int decimal)
     return fabs(x - y) < pow(10, -(++decimal)); // are there values very close
 }
 
-float getRootByBisection(float a, float b, float (*f)(float), int decimal)
+double getRootByBisection(double (*f)(double x), int decimal)
 {
-    float c = (a + b) / 2;
-    float fc = f(c);
+    double a = 0.f;
+    double b = 0.f;
+    double c = 0.f;
 
-    float x;
-    float y;
+    initCoordinates(&a, &b, f);
 
-    if (isZero(fc, 5))
+    do
     {
-        return c;
-    }
-    else if (fc < 0)
-    {
-        return getRootByBisection(c, b, f, decimal);
-    }
-    else
-    {
-        return getRootByBisection(a, c, f, decimal);
-    }
+        c = (a + b) / 2; //' bisection formula to get next value
+        if (f(c) < 0.f)
+        {
+            a = c;
+        }
+        else
+        {
+            b = c;
+        }
+    } while (!isZero(f(c), decimal));
+
+    return c;
 }
 
 float getRootByRegulaFalsi(float a, float b, float (*f)(float), int decimal)
