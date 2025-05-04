@@ -55,27 +55,28 @@ double getRootByBisection(double (*f)(double x), int decimal)
     return c;
 }
 
-float getRootByRegulaFalsi(float a, float b, float (*f)(float), int decimal)
+double getRootByRegulaFalsi(double (*f)(double), int decimal)
 {
-    // c = a - f(a) . (b - a) / (f(b) - f(a))
+    double a = 0.f;
+    double b = 0.f;
+    double c = 0.f;
 
-    float c = a - (f(a) * ((b - a) / (f(b) - f(a))));
+    initCoordinates(&a, &b, f);
 
-    float fc = f(c);
-
-    if (isZero(fc, decimal))
+    do
     {
-        return c;
-    }
-    else if (fc < 0)
-    {
-        return getRootByRegulaFalsi(c, b, f, decimal);
-    }
+        c = a - (f(a) * ((b - a) / (f(b) - f(a)))); // regula falsi formula to get next value
+        if (f(c) < 0.f)
+        {
+            a = c;
+        }
+        else
+        {
+            b = c;
+        }
+    } while (!isZero(f(c), decimal));
 
-    else
-    {
-        return getRootByRegulaFalsi(a, c, f, decimal);
-    }
+    return c;
 }
 
 float approxResultByEuler(float x, float y, float lastValueOfX, float stepSize, float (*f)(float x, float y), int accuracyFactor)
