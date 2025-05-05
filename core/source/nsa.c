@@ -117,3 +117,47 @@ double getRootBySecant(double (*f)(double x), unsigned short int accuracyFactor)
 
     return x2;
 }
+
+void printMatrix(int matrix[3][4])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void getRootByGaussElimination(int rows, int columns, int matrix[rows][columns], int *roots)
+{
+    int lrow = matrix[rows - 1][0];
+    int urow = matrix[rows - 2][0];
+
+    for (int i = 0; i < columns; i++)
+    {
+        matrix[rows - 1][i] = (matrix[rows - 1][i] * urow) - (matrix[rows - 2][i] * lrow);
+    }
+
+    lrow = matrix[rows - 2][0];
+    urow = matrix[rows - 3][0];
+
+    for (int i = 0; i < columns; i++)
+    {
+        matrix[rows - 2][i] = (matrix[rows - 2][i] * urow) - (matrix[rows - 3][i] * lrow);
+    }
+
+    lrow = matrix[rows - 1][1];
+    urow = matrix[rows - 2][1];
+
+    for (int i = 0; i < columns; i++)
+    {
+        matrix[rows - 1][i] = (matrix[rows - 1][i] * urow) - (matrix[rows - 2][i] * lrow);
+    }
+
+    roots[2] = matrix[rows - 1][columns - 1] / matrix[rows - 1][columns - 2];
+    roots[1] = (matrix[rows - 2][columns - 1] - (matrix[rows - 2][columns - 2] * roots[2])) / matrix[rows - 2][columns - 3];
+    roots[0] = (matrix[rows - 3][columns - 1] - (matrix[rows - 3][columns - 2] * roots[2]) - (matrix[rows - 3][columns - 3] * roots[1])) / matrix[rows - 3][columns - 4];
+}
