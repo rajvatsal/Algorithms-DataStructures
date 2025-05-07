@@ -190,11 +190,10 @@ void getValuesByGaussSiedel(double fx(double y, double z), double fy(double x, d
         values[1] = fy(values[0], values[2]);
         values[2] = fz(values[0], values[1]);
 
-        // TODO: remove not from here and add to while condition
-        valuesAreCloseEnough = !areCloseToAnInteger(values[0], values[1], values[2], accuracyFactor);
+        valuesAreCloseEnough = areCloseToAnInteger(values[0], values[1], values[2], accuracyFactor);
 
         count++;
-    } while (count < 20 || valuesAreCloseEnough);
+    } while (count < 20 || !valuesAreCloseEnough);
 }
 
 void getValuesByGaussJacobi(double fx(double y, double z), double fy(double x, double z), double fz(double x, double y), double values[3], unsigned short int accuracyFactor)
