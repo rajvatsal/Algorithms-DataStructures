@@ -6,3 +6,4 @@ double approxResultByEuler(double x, double y, double lastValueOfX, double stepS
 double getRootBySecant(double (*f)(double x), unsigned short int accuracyFactor);
 void getValuesByGaussElimination(int rows, int columns, int matrix[rows][columns], int *roots);
 void getValuesByGaussSiedel(double fx(double y, double z), double fy(double x, double z), double fz(double x, double y), double values[3], unsigned short int accuracyFactor);
+void getValuesByGaussJacobi(double fx(double y, double z), double fy(double x, double z), double fz(double x, double y), double values[3], unsigned short int accuracyFactor);

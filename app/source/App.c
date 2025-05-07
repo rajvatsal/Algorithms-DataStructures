@@ -20,7 +20,7 @@ int main()
 {
     double values[3];
 
-    getValuesByGaussSiedel(fx, fy, fz, values, 9);
+    getValuesByGaussJacobi(fx, fy, fz, values, 9);
 
     printf("%lf %lf %lf\n", values[0], values[1], values[2]);
 }
