@@ -2,6 +2,8 @@
 #include <math.h>
 #include <stdio.h>
 
+inline int areCloseToAnInteger(double x, double y, double z, unsigned short int aFactor);
+
 void initCoordinates(double *x0, double *x1, double (*f)(double x))
 {
     int i = 0;
@@ -131,7 +133,7 @@ void printMatrix(int matrix[3][4])
     printf("\n");
 }
 
-void getRootByGaussElimination(int rows, int columns, int matrix[rows][columns], int *roots)
+void getValuesByGaussElimination(int rows, int columns, int matrix[rows][columns], int *values)
 {
     int lrow = matrix[rows - 1][0];
     int urow = matrix[rows - 2][0];
@@ -157,7 +159,39 @@ void getRootByGaussElimination(int rows, int columns, int matrix[rows][columns],
         matrix[rows - 1][i] = (matrix[rows - 1][i] * urow) - (matrix[rows - 2][i] * lrow);
     }
 
-    roots[2] = matrix[rows - 1][columns - 1] / matrix[rows - 1][columns - 2];
-    roots[1] = (matrix[rows - 2][columns - 1] - (matrix[rows - 2][columns - 2] * roots[2])) / matrix[rows - 2][columns - 3];
-    roots[0] = (matrix[rows - 3][columns - 1] - (matrix[rows - 3][columns - 2] * roots[2]) - (matrix[rows - 3][columns - 3] * roots[1])) / matrix[rows - 3][columns - 4];
+    values[2] = matrix[rows - 1][columns - 1] / matrix[rows - 1][columns - 2];
+    values[1] = (matrix[rows - 2][columns - 1] - (matrix[rows - 2][columns - 2] * values[2])) / matrix[rows - 2][columns - 3];
+    values[0] = (matrix[rows - 3][columns - 1] - (matrix[rows - 3][columns - 2] * values[2]) - (matrix[rows - 3][columns - 3] * values[1])) / matrix[rows - 3][columns - 4];
+}
+
+inline int areCloseToAnInteger(double x, double y, double z, unsigned short int aFactor)
+{
+    double accuracyFactor = pow(10, -aFactor);
+
+    int isX = fabs(x - floor(x + 1)) > accuracyFactor && fabs(x - floor(x)) > accuracyFactor;
+    int isY = fabs(y - floor(y + 1)) > accuracyFactor && fabs(y - floor(y)) > accuracyFactor;
+    int isZ = fabs(z - floor(z + 1)) > accuracyFactor && fabs(z - floor(z)) > accuracyFactor;
+
+    if (isX || isY || isZ)
+        return 0;
+
+    return 1;
+}
+
+void getValuesByGaussSiedel(double fx(double y, double z), double fy(double x, double z), double fz(double x, double y), double values[3], unsigned short int accuracyFactor)
+{
+    values[0] = values[1] = values[2] = 0;
+    int count = 0;
+    int valuesAreCloseEnough = 1;
+
+    do
+    {
+        values[0] = fx(values[1], values[2]);
+        values[1] = fy(values[0], values[2]);
+        values[2] = fz(values[0], values[1]);
+
+        valuesAreCloseEnough = !areCloseToAnInteger(values[0], values[1], values[2], accuracyFactor);
+
+        count++;
+    } while (count < 20 || valuesAreCloseEnough);
 }

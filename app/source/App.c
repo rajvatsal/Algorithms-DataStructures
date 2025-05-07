@@ -1,14 +1,26 @@
 #include "nsa.h"
 #include <stdio.h>
 
+double fx(double y, double z)
+{
+    return 7 - y - z;
+}
+
+double fy(double x, double z)
+{
+    return (13 - x - z) / 3;
+}
+
+double fz(double x, double y)
+{
+    return (13 - (2 * y) - x) / 2;
+}
+
 int main()
 {
-    int roots[3];
-    int matrix[3][4] = {{1, 1, 1, 3},
-                        {2, -1, -1, 3},
-                        {1, -1, 1, 9}};
+    double values[3];
 
-    getRootByGaussElimination(3, 4, matrix, roots);
+    getValuesByGaussSiedel(fx, fy, fz, values, 9);
 
-    printf("%d %d %d\n", roots[0], roots[1], roots[2]);
+    printf("%lf %lf %lf\n", values[0], values[1], values[2]);
 }
