@@ -122,13 +122,13 @@ double getRootBySecant(double (*f)(double x), unsigned short int accuracyFactor)
     return x2;
 }
 
-void printMatrix(int matrix[3][4])
+void printMatrix(int rows, int cols, double matrix[rows][cols])
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < cols; j++)
         {
-            printf("%d ", matrix[i][j]);
+            printf("| %.2f |\t", matrix[i][j]);
         }
         printf("\n");
     }
@@ -246,4 +246,92 @@ double getRootByNewtonRaphson(double (*f)(double x), unsigned short int accuracy
     } while (!isZero(f(x0), accuracyFactor));
 
     return x0;
+}
+
+/* TODO: make this more general and less hardcoded.
+ * introduce loops to make it more generic
+ * allow it to take any square matrices
+ */
+void decomposeMatrixToLU(double matrix[3][3], double L[3][3], double U[3][3])
+{
+    int i = 0;
+    int j = 0;
+    double value = matrix[i][j];
+
+    // Initialize L
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (i == j)
+                L[i][j] = 1;
+            else
+                L[i][j] = 0;
+        }
+    }
+
+    // Introduce 1 at matrix[0][0]
+    for (int j = 0; j < 3; j++)
+    {
+        matrix[i][j] /= value;
+    }
+
+    // Add coefficient to L
+    L[0][0] = value;
+
+    i = 1;
+    value = matrix[i][0];
+
+    for (int j = 0; j < 3; j++)
+    {
+        matrix[i][j] -= matrix[0][j] * value;
+    }
+
+    L[i][0] = value;
+
+    i = 2;
+    value = matrix[i][0];
+
+    for (int j = 0; j < 3; j++)
+    {
+        matrix[i][j] -= matrix[0][j] * value;
+    }
+
+    L[i][0] = value;
+
+    i = 1;
+    j = 1;
+
+    // Intridouce one at matrix [1][1] if there isn't
+    if (matrix[i][j] != 1)
+    {
+        value = matrix[i][j];
+        for (int j = 0; j < 3; j++)
+        {
+            matrix[i][j] /= value;
+        }
+        L[i][j] = value;
+    }
+
+    // Add zero at matrix[2][1]
+    i++;
+    value = matrix[2][1];
+
+    for (int j = 0; j < 3; j++)
+    {
+        matrix[i][j] -= value * matrix[1][j];
+    }
+    L[2][1] = value;
+
+    // If the element at matrix[2][3] is not 1 matke it one
+    value = matrix[2][2];
+    if (value != 1 && value != 0)
+    {
+        matrix[2][2] /= value;
+    }
+
+    L[2][2] = value;
+
+    printMatrix(3, 3, matrix);
+    printMatrix(3, 3, L);
 }

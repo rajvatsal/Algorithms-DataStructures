@@ -8,3 +8,4 @@ void getValuesByGaussElimination(int rows, int columns, int matrix[rows][columns
 void getValuesByGaussSiedel(double fx(double y, double z), double fy(double x, double z), double fz(double x, double y), double values[3], unsigned short int accuracyFactor);
 void getValuesByGaussJacobi(double fx(double y, double z), double fy(double x, double z), double fz(double x, double y), double values[3], unsigned short int accuracyFactor);
 double getRootByNewtonRaphson(double (*f)(double x), unsigned short int accuracyFactor);
+void decomposeMatrixToLU(double matrix[3][3], double L[3][3], double U[3][3]);

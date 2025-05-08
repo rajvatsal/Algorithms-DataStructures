@@ -9,7 +9,12 @@ double f(double x)
 
 int main()
 {
-    double values[3];
+    double matrix[3][3] = {
+        {3, 0, 1},
+        {6, 1, 1},
+        {-3, 1, 0}};
+    double L[3][3] = {{2, -4, 1}, {4, 1, 5}, {1, 1, 2}};
+    double U[3][3] = {{2, -4, 1}, {4, 1, 5}, {1, 1, 2}};
 
-    printf("%lf", getRootByNewtonRaphson(f, 4));
+    decomposeMatrixToLU(matrix, L, U);
 }
