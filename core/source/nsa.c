@@ -2,7 +2,9 @@
 #include <math.h>
 #include <stdio.h>
 
-inline int areCloseToAnInteger(double x, double y, double z, unsigned short int aFactor);
+/*
+ * TODO: Fix inline function not found in Debug Mode
+ */
 
 void initCoordinates(double *x0, double *x1, double (*f)(double x))
 {
@@ -216,4 +218,32 @@ void getValuesByGaussJacobi(double fx(double y, double z), double fy(double x, d
 
         count++;
     } while (count < 20 || !valuesAreCloseEnough);
+}
+
+inline double derive(double (*f)(double value), double value)
+{
+    double delta = 1e-6;
+    double x1 = value + delta;
+    double x2 = value - delta;
+    double y1 = f(x1);
+    double y2 = f(x2);
+
+    return (y2 - y1) / (x2 - x1);
+}
+
+double getRootByNewtonRaphson(double (*f)(double x), unsigned short int accuracyFactor)
+{
+    double a = 0;
+    double b = 0;
+    double x0 = (a + b) / 2;
+
+    initCoordinates(&a, &b, f);
+
+    do
+    {
+        double x1 = x0 - (f(x0) / derive(f, x0));
+        x0 = x1;
+    } while (!isZero(f(x0), accuracyFactor));
+
+    return x0;
 }
