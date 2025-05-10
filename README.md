@@ -31,10 +31,17 @@ In this repository I try to implement common CS algorithms/data structures in C 
 - Mergesort
 - Insertion sort
 
-**Roots**
+**NSA**
 
 - Bisection Method
 - Regula Falsi Method
+- Newton Raphson
+- Gauss Elimintation
+- Gauss Siedel
+- LU Decomposition using Gauss Elimination
+- Euler's method
+- Secant
+- Jacobi
 
 ## Algorithms to be implemented
 
@@ -52,7 +59,7 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 **Search**
 
-- Binary Search
+- Binary Search (Recursive and Non-Recursive)
 - BFS
 - DFS
 
@@ -60,8 +67,5 @@ In this repository I try to implement common CS algorithms/data structures in C 
 - Minmax
 - Shuffling
 - Knight Travails (TOP)
-
-**Nsa**
-
-- Newton raphson
-- Some other methods
+- Get max and min number in int array
+- Get operation count of a given pseudo code
