@@ -21,7 +21,7 @@ int binarySearch(int target, int len, int arr[len])
     do
     {
         c = ((end - start) / 2) + start;
-        if (c > len || c <= 0)
+        if (c >= len || c < 0)
         {
             c = len + 1;
             break;
@@ -37,4 +37,18 @@ int binarySearch(int target, int len, int arr[len])
     } while (arr[c] != target);
 
     return c;
+}
+
+int binarySearchRecursive(int target, int start, int end, int len, int arr[len])
+{
+    int c = (end - start / 2) + start;
+
+    if (c >= len || c < 0)
+        return len + 1;
+    else if (arr[c] == target)
+        return c;
+    else if (target < arr[c])
+        return binarySearchRecursive(target, start, c - 1, len, arr);
+    else
+        return binarySearchRecursive(target, c + 1, end, len, arr);
 }
