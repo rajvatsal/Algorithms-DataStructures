@@ -1,3 +1,3 @@
 #pragma once
 
-void insertionSort(int *arr, int len);
+void insertionSort(int len, int arr[len]);
