@@ -1,13 +1,16 @@
-#include "binarysearch.h"
-#include "insertionsort.h"
+#include "quicksort.h"
 #include <stdio.h>
 
 int main(int argc, char *argv[argc])
 {
     int arr[10] = {100, 12, 121, 89, 59, 21, 99, 41, 10, 22};
-    insertionSort(10, arr);
+    quicksort(0, 9, arr);
 
-    int target = binarySearchRecursive(121, 0, 9, 10, arr);
-    printf("value: %d | index: %d \n", arr[target], target);
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%d | ", arr[i]);
+    }
+
+    printf("\n");
     return 0;
 }

@@ -1,13 +1,6 @@
 #include "quicksort.h"
-#include <stdlib.h>
-#include <time.h>
 
-int getRandomPivot(int iFirst, int iLast)
-{
-    return (rand() % (iLast - iFirst)) + iFirst;
-}
-
-int getMedianOfThreePivot(int *arr, int iFirst, int iLast)
+inline int getPivotByMedianOfThree(int *arr, int iFirst, int iLast)
 {
     int iMiddle = (iFirst + iLast) / 2;
     int vFirst = arr[iFirst], vMiddle = arr[iMiddle], vLast = arr[iLast];
@@ -19,80 +12,49 @@ int getMedianOfThreePivot(int *arr, int iFirst, int iLast)
     return iLast;
 }
 
-void sort(int *arr, const int index, const int lastIndex, partitionType_t type)
+inline void swap(int *arr, int x, int y)
 {
-    const int len = (lastIndex - index) + 1;
+    int temp = arr[x];
+    arr[x] = arr[y];
+    arr[y] = temp;
+}
 
-    if (len < 2 || index > lastIndex)
-    {
-        // if there is only one element or we're out of the array we want to sort then
-        return;
-    }
-
+int partition(const int index, const int lastIndex, int *arr)
+{
     int i = index;
     int j = lastIndex;
-    int pivot;
+    int m = getPivotByMedianOfThree(arr, i, j - 1);
 
-    switch (type)
-    {
-    case MEDIAN_OF_THREE:
-        pivot = getMedianOfThreePivot(arr, i, j);
-        break;
-
-    case RANDOM:
-        pivot = (rand() % (j - i)) + i;
-        break;
-    default:
-        pivot = (((len + 1) / 2) - 1) + i;
-        break;
-    };
+    int value = arr[m];
+    arr[m] = arr[i];
+    arr[i] = value;
 
     while (i < j)
     {
-        if (arr[i] >= arr[pivot] && arr[j] <= arr[pivot])
-        {
-            // Inversion Condition Met
-
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-
-            // Update Pivot
-
-            if (pivot == i)
-            {
-                i++;
-                pivot = j;
-                continue;
-            }
-            else if (pivot == j)
-            {
-                j--;
-                pivot = i;
-                continue;
-            }
-        }
-
-        if (arr[i] < arr[pivot])
-        {
+        do
             i++;
-        }
+        while (value > arr[i]);
 
-        if (arr[j] > arr[pivot])
-        {
+        do
             j--;
-        }
+        while (value < arr[j]);
+
+        if (i < j)
+            swap(arr, i, j);
     }
 
-    sort(arr, index, pivot - 1, type);
-    sort(arr, pivot + 1, lastIndex, type);
+    arr[index] = arr[j];
+    arr[j] = value;
+
+    return j;
 }
 
-void quicksort(int *arr, int len, partitionType_t type)
+void quicksort(int p, int q, int *arr)
 {
-    if (type == RANDOM)
+    if (p < q)
     {
-        srand(time(NULL));
+        int j = partition(p, q + 1, arr);
+        quicksort(p, j - 1, arr);
+        quicksort(j + 1, q, arr);
     }
-    sort(arr, 0, len - 1, type);
 }
