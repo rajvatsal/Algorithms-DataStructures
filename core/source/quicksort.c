@@ -1,6 +1,6 @@
 #include "quicksort.h"
 
-inline int getPivotByMedianOfThree(int *arr, int iFirst, int iLast)
+static inline int getPivotByMedianOfThree(int *arr, int iFirst, int iLast)
 {
     int iMiddle = (iFirst + iLast) / 2;
     int vFirst = arr[iFirst], vMiddle = arr[iMiddle], vLast = arr[iLast];
@@ -12,7 +12,7 @@ inline int getPivotByMedianOfThree(int *arr, int iFirst, int iLast)
     return iLast;
 }
 
-inline void swap(int *arr, int x, int y)
+static inline void swap(int *arr, int x, int y)
 {
     int temp = arr[x];
     arr[x] = arr[y];

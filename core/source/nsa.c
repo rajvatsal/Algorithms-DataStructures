@@ -166,7 +166,7 @@ void getValuesByGaussElimination(int rows, int columns, int matrix[rows][columns
     values[0] = (matrix[rows - 3][columns - 1] - (matrix[rows - 3][columns - 2] * values[2]) - (matrix[rows - 3][columns - 3] * values[1])) / matrix[rows - 3][columns - 4];
 }
 
-inline int areCloseToAnInteger(double x, double y, double z, unsigned short int aFactor)
+static inline int areCloseToAnInteger(double x, double y, double z, unsigned short int aFactor)
 {
     double accuracyFactor = pow(10, -aFactor);
 
@@ -220,7 +220,7 @@ void getValuesByGaussJacobi(double fx(double y, double z), double fy(double x, d
     } while (count < 20 || !valuesAreCloseEnough);
 }
 
-inline double derive(double (*f)(double value), double value)
+static inline double derive(double (*f)(double value), double value)
 {
     double delta = 1e-6;
     double x1 = value + delta;

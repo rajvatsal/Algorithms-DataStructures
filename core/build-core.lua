@@ -17,6 +17,7 @@ project "Core"
     symbols "On"
     runtime "Debug"
 
+
   filter "configurations:Release"
     defines "NDEBUG"
     optimize "On"
