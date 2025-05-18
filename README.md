@@ -30,6 +30,10 @@ In this repository I try to implement common CS algorithms/data structures in C 
 - Quicksort(middle)
 - Mergesort
 - Insertion sort
+- Bubblesort
+
+**Search**
+- Binary Search (Recursive and Non-Recursive)
 
 **NSA**
 
@@ -48,7 +52,6 @@ In this repository I try to implement common CS algorithms/data structures in C 
  **Sorting**
 
 - Radix sort
-- Bubblesort
 - Perfect sort -> an algorihtm that uses above algorithms to get the best result based on the dataset size
 
 **Data Structures**
@@ -59,7 +62,6 @@ In this repository I try to implement common CS algorithms/data structures in C 
 
 **Search**
 
-- Binary Search (Recursive and Non-Recursive)
 - BFS
 - DFS
 
