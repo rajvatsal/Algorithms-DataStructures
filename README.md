@@ -59,6 +59,10 @@ In this repository I try to implement common CS algorithms/data structures in C 
 - Linked List (circular and linear)
 - Tree
 - Graph
+- Btree
+- B+tree
+- Piece Table
+- Rope
 
 **Search**
 
